@@ -18,7 +18,7 @@ public class Projets {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String nom;
     private String description;
     private LocalDate date_debut;
