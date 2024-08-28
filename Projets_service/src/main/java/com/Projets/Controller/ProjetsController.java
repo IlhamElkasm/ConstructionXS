@@ -1,6 +1,7 @@
 package com.Projets.Controller;
 
 import com.Projets.Dto.ProjetsDTO;
+import com.Projets.Service.IProjetsService;
 import com.Projets.Service.ProjetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ProjetsController {
 
     @Autowired
-    private ProjetsService projetsService;
+    private IProjetsService projetsService;
 
     // Créer un nouveau projet
     @PostMapping
@@ -27,6 +28,16 @@ public class ProjetsController {
     public ResponseEntity<List<ProjetsDTO>> getAllProjects() {
         List<ProjetsDTO> projets = projetsService.getAllProjects();
         return ResponseEntity.ok(projets);
+    }
+
+    // Récupérer un projet par ID
+    @GetMapping("/{idProjet}")
+    public ResponseEntity<ProjetsDTO> getProjectById(@PathVariable Long id) {
+        ProjetsDTO projet = projetsService.getProjetById(id);
+        if (projet != null) {
+            return ResponseEntity.ok(projet);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     // Mettre à jour un projet existant
@@ -45,5 +56,4 @@ public class ProjetsController {
         projetsService.deleteProject(id);
         return ResponseEntity.noContent().build();
     }
-
 }

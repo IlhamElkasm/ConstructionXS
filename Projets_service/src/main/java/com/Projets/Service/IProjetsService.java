@@ -8,8 +8,11 @@ import java.util.List;
 public interface IProjetsService {
 
     ProjetsDTO createProject(ProjetsDTO projetsDTO);
-    List<ProjetsDTO> getAllProjects();
-    ProjetsDTO updateProject(Long id, ProjetsDTO projetsDTO);
+    ProjetsDTO getProjetById(Long id);
     void deleteProject(Long id);
-    ProjetsDTO convertToDTO(Projets projet);
+
+    // Afficher la liste des projets existants
+    List<ProjetsDTO> getAllProjects();
+
+    ProjetsDTO updateProject(Long id, ProjetsDTO projetsDTO);
 }
