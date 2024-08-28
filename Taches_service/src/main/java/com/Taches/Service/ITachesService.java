@@ -4,5 +4,5 @@ import com.Taches.Dto.TachesDto;
 
 public interface ITachesService {
 
-    TachesDto createTache(TachesDto tachesDto);
+    TachesDto createTache(TachesDto tachesDto,  int idProjet);
 }
