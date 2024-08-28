@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="21702d88-7363-4f5d-a85c-055dbbe04688" name="Changes" comment="create interface de projetJpa">
       <change beforePath="$PROJECT_DIR$/Projets_service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Projets_service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projets_service/src/main/java/com/Projets/ProjetsServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projets_service/src/main/java/com/Projets/ProjetsServiceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projets_service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Projets_service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery_service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery_service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +127,7 @@
       <workItem from="1724765535363" duration="450000" />
       <workItem from="1724766244654" duration="1195000" />
       <workItem from="1724768987800" duration="430000" />
+      <workItem from="1724831794222" duration="7000" />
     </task>
     <task id="LOCAL-00001" summary="create class de Projet">
       <option name="closed" value="true" />
