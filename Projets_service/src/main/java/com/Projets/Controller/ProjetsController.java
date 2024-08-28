@@ -31,7 +31,7 @@ public class ProjetsController {
     }
 
     // Récupérer un projet par ID
-    @GetMapping("/{idProjet}")
+    @GetMapping("/{id}")
     public ResponseEntity<ProjetsDTO> getProjectById(@PathVariable Long id) {
         ProjetsDTO projet = projetsService.getProjetById(id);
         if (projet != null) {

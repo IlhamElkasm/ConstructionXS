@@ -31,9 +31,13 @@ public class ProjetsService implements  IProjetsService{
     // Afficher la liste des projets existants
     @Override
     public List<ProjetsDTO> getAllProjects() {
-        return projetsRepository.findAll().stream()
-                .map(projetsMapper::toDto)
-                .collect(Collectors.toList());
+
+        List<ProjetsDTO> list = projetsMapper.toDtoList(projetsRepository.findAll());
+        System.out.println(list);
+        return list;
+//        return projetsRepository.findAll().stream()
+//                .map(projetsMapper::toDto)
+//                .collect(Collectors.toList());
     }
 
     // Mettre à jour un projet existant
