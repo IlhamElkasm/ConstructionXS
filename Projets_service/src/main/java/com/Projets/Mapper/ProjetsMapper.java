@@ -14,7 +14,6 @@ public interface ProjetsMapper {
 
         ProjetsDTO toDto(Projets projet);
         Projets toEntity(ProjetsDTO projetsDTO);
-        void updateEntityFromDto(ProjetsDTO dto, @MappingTarget Projets entity);
         List<ProjetsDTO> toDtoList(List<Projets> projets);
         List<Projets> toEntityList(List<ProjetsDTO> projetsDTOS);
 

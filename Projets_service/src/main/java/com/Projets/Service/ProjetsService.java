@@ -43,15 +43,16 @@ public class ProjetsService implements  IProjetsService{
     // Mettre à jour un projet existant
     @Override
     public ProjetsDTO updateProject(Long id, ProjetsDTO projetsDTO) {
-        Optional<Projets> optionalProjet = projetsRepository.findById(id);
-        if (optionalProjet.isPresent()) {
-            Projets projet = optionalProjet.get();
-            projetsMapper.updateEntityFromDto(projetsDTO, projet);
-            projet = projetsRepository.save(projet);
-            return projetsMapper.toDto(projet);
+        Projets existingProjet = projetsRepository.findById(id).orElse(null);
+        if (existingProjet != null) {
+            Projets updatedProjet = projetsMapper.toEntity(projetsDTO);
+            updatedProjet.setId(id); // Ensure the ID remains the same
+            projetsRepository.save(updatedProjet);
+            return projetsMapper.toDto(updatedProjet);
         }
         return null;
     }
+
 
     // Supprimer un projet existant
     @Override
