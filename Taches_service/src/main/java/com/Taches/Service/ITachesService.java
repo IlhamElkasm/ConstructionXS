@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface ITachesService {
 
-//    TachesDto createTache(TachesDto tachesDto,  Long idProjet);
-        Taches createTache(Taches tachesDto, Long idProjet);
+        TachesDto createTache(TachesDto tachesDto,  Long idProjet);
+        //Taches createTache(Taches tachesDto, Long idProjet);
         TachesDto getTachesById(Long id);
         void deleteTache(Long id);
 
