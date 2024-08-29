@@ -1,7 +1,6 @@
 package com.Projets.Service;
 
 import com.Projets.Dto.ProjetsDTO;
-import com.Projets.Mapper.ProjetsMapper;
 import com.Projets.Model.Projets;
 import com.Projets.Repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ProjetsService implements  IProjetsService{
+public class ProjetsService implements IProjetsService {
 
     @Autowired
     private ProjectRepository projetsRepository;
-
-    @Autowired
-    private ProjetsMapper projetsMapper;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -27,21 +23,50 @@ public class ProjetsService implements  IProjetsService{
     // Créer un nouveau projet
     @Override
     public ProjetsDTO createProject(ProjetsDTO projetsDTO) {
-        Projets projet = projetsMapper.toEntity(projetsDTO);
+        // Log the incoming DTO
+        System.out.println("Creating project with name: " + projetsDTO.getNom());
+
+        // Convert DTO to entity manually
+        Projets projet = new Projets();
+        projet.setId(projetsDTO.getId());
+        projet.setNom(projetsDTO.getNom());
+        projet.setDescription(projetsDTO.getDescription());
+        projet.setDate_debut(projetsDTO.getDate_debut());
+        projet.setDate_fin(projetsDTO.getDate_fin());
+        projet.setBudget(projetsDTO.getBudget());
+
+        // Log the entity before saving
+        System.out.println("Mapped project entity: " + projet);
+
+        // Save the entity to the repository
         projet = projetsRepository.save(projet);
-        return projetsMapper.toDto(projet);
+
+        // Create and return a new DTO with the saved entity's data
+        ProjetsDTO savedProjetsDTO = new ProjetsDTO();
+        savedProjetsDTO.setId(projet.getId());
+        savedProjetsDTO.setNom(projet.getNom());
+        savedProjetsDTO.setDescription(projet.getDescription());
+        savedProjetsDTO.setDate_debut(projet.getDate_debut());
+        savedProjetsDTO.setDate_fin(projet.getDate_fin());
+        savedProjetsDTO.setBudget(projet.getBudget());
+
+        return savedProjetsDTO;
     }
 
     // Afficher la liste des projets existants
     @Override
     public List<ProjetsDTO> getAllProjects() {
-
-        List<ProjetsDTO> list = projetsMapper.toDtoList(projetsRepository.findAll());
-        System.out.println(list);
-        return list;
-//        return projetsRepository.findAll().stream()
-//                .map(projetsMapper::toDto)
-//                .collect(Collectors.toList());
+        List<Projets> projets = projetsRepository.findAll();
+        return projets.stream().map(projet -> {
+            ProjetsDTO dto = new ProjetsDTO();
+            dto.setId(projet.getId());
+            dto.setNom(projet.getNom());
+            dto.setDescription(projet.getDescription());
+            dto.setDate_debut(projet.getDate_debut());
+            dto.setDate_fin(projet.getDate_fin());
+            dto.setBudget(projet.getBudget());
+            return dto;
+        }).collect(Collectors.toList());
     }
 
     // Mettre à jour un projet existant
@@ -49,20 +74,30 @@ public class ProjetsService implements  IProjetsService{
     public ProjetsDTO updateProject(Long id, ProjetsDTO projetsDTO) {
         Projets existingProjet = projetsRepository.findById(id).orElse(null);
         if (existingProjet != null) {
-            Projets updatedProjet = projetsMapper.toEntity(projetsDTO);
-            updatedProjet.setId(id); // Ensure the ID remains the same
-            projetsRepository.save(updatedProjet);
-            return projetsMapper.toDto(updatedProjet);
+            existingProjet.setNom(projetsDTO.getNom());
+            existingProjet.setDescription(projetsDTO.getDescription());
+            existingProjet.setDate_debut(projetsDTO.getDate_debut());
+            existingProjet.setDate_fin(projetsDTO.getDate_fin());
+            existingProjet.setBudget(projetsDTO.getBudget());
+
+            projetsRepository.save(existingProjet);
+
+            ProjetsDTO updatedProjetsDTO = new ProjetsDTO();
+            updatedProjetsDTO.setId(existingProjet.getId());
+            updatedProjetsDTO.setNom(existingProjet.getNom());
+            updatedProjetsDTO.setDescription(existingProjet.getDescription());
+            updatedProjetsDTO.setDate_debut(existingProjet.getDate_debut());
+            updatedProjetsDTO.setDate_fin(existingProjet.getDate_fin());
+            updatedProjetsDTO.setBudget(existingProjet.getBudget());
+
+            return updatedProjetsDTO;
         }
         return null;
     }
 
-
     // Supprimer un projet existant
     @Override
     public void deleteProject(Long id) {
-//        projetsRepository.deleteById(id);
-
         // URL du service Tache
         String url = "http://localhost:8082/api/Taches/projet/" + id;
 
@@ -81,6 +116,17 @@ public class ProjetsService implements  IProjetsService{
     @Override
     public ProjetsDTO getProjetById(Long id) {
         Optional<Projets> optionalProjet = projetsRepository.findById(id);
-        return optionalProjet.map(projetsMapper::toDto).orElse(null);
+        if (optionalProjet.isPresent()) {
+            Projets projet = optionalProjet.get();
+            ProjetsDTO dto = new ProjetsDTO();
+            dto.setId(projet.getId());
+            dto.setNom(projet.getNom());
+            dto.setDescription(projet.getDescription());
+            dto.setDate_debut(projet.getDate_debut());
+            dto.setDate_fin(projet.getDate_fin());
+            dto.setBudget(projet.getBudget());
+            return dto;
+        }
+        return null;
     }
 }
