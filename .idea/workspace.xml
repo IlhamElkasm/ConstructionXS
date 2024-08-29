@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21702d88-7363-4f5d-a85c-055dbbe04688" name="Changes" comment="create interface de projetJpa">
-      <change beforePath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Service/ITachesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Service/ITachesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Service/TachesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Service/TachesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +130,9 @@
       <workItem from="1724831794222" duration="7000" />
       <workItem from="1724851158105" duration="17000" />
       <workItem from="1724919637760" duration="29000" />
+      <workItem from="1724945822385" duration="49000" />
+      <workItem from="1724945885563" duration="34000" />
+      <workItem from="1724946184416" duration="50000" />
     </task>
     <task id="LOCAL-00001" summary="create class de Projet">
       <option name="closed" value="true" />

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IRessourceService {
 
-    Ressource createRessource(Ressource ressource, Long idTache);
+    RessourceDto createRessource(RessourceDto ressourceDto, Long idTache);
     RessourceDto getRessourceById(Long id);
     void deleteRessource(Long id);
 
@@ -16,5 +16,5 @@ public interface IRessourceService {
 
     RessourceDto updateRessource(Long id, RessourceDto ressourceDto);
 
-    void deleteRessourceByTacheId(Long idProjet);
+    void deleteRessourceByTacheId(Long idTache);
 }
