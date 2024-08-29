@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21702d88-7363-4f5d-a85c-055dbbe04688" name="Changes" comment="create interface de projetJpa" />
+    <list default="true" id="21702d88-7363-4f5d-a85c-055dbbe04688" name="Changes" comment="create interface de projetJpa">
+      <change beforePath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Service/ITachesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Service/ITachesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Service/TachesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Service/TachesService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +58,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/user/Desktop/ConstructionXS/Projets_service",
+    "last_opened_file_path": "C:/Users/user/Desktop/ConstructionXS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -126,6 +129,7 @@
       <workItem from="1724768987800" duration="430000" />
       <workItem from="1724831794222" duration="7000" />
       <workItem from="1724851158105" duration="17000" />
+      <workItem from="1724919637760" duration="29000" />
     </task>
     <task id="LOCAL-00001" summary="create class de Projet">
       <option name="closed" value="true" />
