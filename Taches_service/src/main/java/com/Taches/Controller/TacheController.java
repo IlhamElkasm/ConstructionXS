@@ -24,8 +24,8 @@ public class TacheController {
 //        return ResponseEntity.ok(createdProject);
 //    }
     public ResponseEntity<Taches> createTache(@RequestBody Taches tachesDto, @PathVariable Long idProjet) {
-        Taches createdProject = tachesService.createTache(tachesDto, idProjet);
-        return ResponseEntity.ok(createdProject);
+        Taches createdTache = tachesService.createTache(tachesDto, idProjet);
+        return ResponseEntity.ok(createdTache);
     }
 
     // Afficher la liste des taches existants
