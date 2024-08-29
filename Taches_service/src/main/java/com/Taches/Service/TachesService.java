@@ -70,6 +70,17 @@ public class TachesService implements ITachesService {
 
     @Override
     public void deleteTache(Long id) {
+        // URL du service Ressource
+        String url = "http://localhost:8083/api/Ressource/tache/" + id;
+
+        try {
+            // D'abord, supprimer les ressource liées à ce tache
+            restTemplate.delete(url);
+        } catch (Exception e) {
+            throw new IllegalStateException("Erreur lors de la suppression des ressource pour l'ID du  tache " + id, e);
+        }
+
+        // Ensuite, supprimer le atche
         tacheRepository.deleteById(id);
     }
 
