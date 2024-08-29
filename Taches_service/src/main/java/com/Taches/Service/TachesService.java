@@ -22,18 +22,20 @@ public class TachesService  implements ITachesService{
     private RestTemplate restTemplate;
 
     @Override
-    public TachesDto createTache(TachesDto tachesDto, int idProjet) {
+    public Taches createTache(Taches tachesDto, Long idProjet) {
 
 
         try {
-            restTemplate.getForObject("http://localhost:8081/api/Projets/id?idprojet"+idProjet, Object.class);
+            restTemplate.getForObject("http://localhost:8081/api/Projets/" +idProjet, Object.class);
         }catch (Exception e){
-            throw  new IllegalArgumentException("projet non trouve :" +idProjet);
+            throw  new IllegalArgumentException("projet non trouve :" +e);
 
         }
-        Taches tache = tachesMapper.toEntity(tachesDto);
-        tache.setIdprojet(idProjet);
-        tache = tacheRepository.save(tache);
-        return tachesMapper.toDto(tache);
+//        Taches tache = tachesMapper.toEntity(tachesDto);
+        tachesDto.setIdProjet(idProjet);
+        return tacheRepository.save(tachesDto);
+
+//        return tachesMapper.toDto(tache);
     }
 }
+

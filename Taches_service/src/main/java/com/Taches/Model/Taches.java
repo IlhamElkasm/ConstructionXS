@@ -17,10 +17,10 @@ public class Taches {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  String nom;
+    private String nom;
     private String date_debut;
     private String date_fin;
     private String description;
     private String statu;
-    private  Integer idprojet;
+    private  Long idProjet;
 }

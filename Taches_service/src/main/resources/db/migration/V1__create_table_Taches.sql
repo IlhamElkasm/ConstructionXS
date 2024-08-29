@@ -6,5 +6,5 @@ create  table Taches(
                          date_debut DATE,
                          date_fin DATE,
                          statu VARCHAR(200) NOT NULL,
-                         idprojet int
+                         idProjet BIGINT
 );
