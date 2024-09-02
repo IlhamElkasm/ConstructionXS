@@ -14,15 +14,16 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Personne implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
     private String username;
     private  String email;
-    private String Password;
+    private String password;
+
 
     @Enumerated(EnumType.STRING)
     private  Role role;
