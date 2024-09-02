@@ -7,7 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Ressource_service" />
         <module name="Projets_service" />
+        <module name="Taches_service" />
         <module name="discovery_service" />
       </profile>
     </annotationProcessing>
@@ -15,6 +17,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Projets_service" options="-parameters" />
+      <module name="Ressource_service" options="-parameters" />
+      <module name="Taches_service" options="-parameters" />
       <module name="discovery_service" options="-parameters" />
     </option>
   </component>
