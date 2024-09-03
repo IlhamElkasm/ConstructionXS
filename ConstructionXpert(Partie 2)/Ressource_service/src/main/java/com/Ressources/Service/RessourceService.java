@@ -1,8 +1,10 @@
 package com.Ressources.Service;
 
 import com.Ressources.Dto.RessourceDto;
+import com.Ressources.Feign.TacheInterface;
 import com.Ressources.Model.Ressource;
 import com.Ressources.Repository.RessourceRepository;
+import com.Ressources.Response.TacheResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,15 +20,23 @@ public class RessourceService implements  IRessourceService{
     @Autowired
     private RessourceRepository ressourceRepository;
 
+//    @Autowired
+//    private RestTemplate restTemplate;
+
     @Autowired
-    private RestTemplate restTemplate;
+    private TacheInterface tacheInterface;
 
     @Override
     public RessourceDto createRessource(RessourceDto ressourceDto, Long idTache) {
+
         try {
-            restTemplate.getForObject("http://localhost:8082/api/Taches/" + idTache, Object.class);
+            TacheResponse tacheResponse = tacheInterface.getTacheById(idTache);
+            // Assure-toi que projetResponse n'est pas nul ici
+            if (tacheResponse == null) {
+                throw new IllegalArgumentException("Projet non trouvé : ID " + idTache);
+            }
         } catch (Exception e) {
-            throw new IllegalArgumentException("Projet non trouvé : " + e);
+            throw new IllegalArgumentException("Erreur lors de la récupération du projet : " + e.getMessage());
         }
 
         Ressource ressource = new Ressource();
