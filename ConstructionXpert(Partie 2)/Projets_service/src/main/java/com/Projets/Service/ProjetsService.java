@@ -1,8 +1,10 @@
 package com.Projets.Service;
 
 import com.Projets.Dto.ProjetsDTO;
+import com.Projets.Feign.TachesInterface;
 import com.Projets.Model.Projets;
 import com.Projets.Repository.ProjectRepository;
+import com.Projets.Response.TacheResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,6 +21,9 @@ public class ProjetsService implements IProjetsService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private TachesInterface tachesInterface;
 
     // Créer un nouveau projet
     @Override
@@ -96,14 +101,11 @@ public class ProjetsService implements IProjetsService {
     }
 
     // Supprimer un projet existant
-    @Override
     public void deleteProject(Long id) {
-        // URL du service Tache
-        String url = "http://localhost:8082/api/Taches/projet/" + id;
 
         try {
             // D'abord, supprimer les tâches liées à ce projet
-            restTemplate.delete(url);
+            tachesInterface.deleteTachesByProjetId(id);
         } catch (Exception e) {
             throw new IllegalStateException("Erreur lors de la suppression des tâches pour l'ID du projet : " + id, e);
         }
