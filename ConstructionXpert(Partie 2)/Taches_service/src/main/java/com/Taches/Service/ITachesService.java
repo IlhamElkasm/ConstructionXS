@@ -10,7 +10,7 @@ public interface ITachesService {
         TachesDto createTache(TachesDto tachesDto,  Long idProjet);
         //Taches createTache(Taches tachesDto, Long idProjet);
         TachesDto getTachesById(Long id);
-//        void deleteTache(Long id);
+        void deleteTache(Long id);
 
         // Afficher la liste des projets existants
         List<TachesDto> getAllTaches();
