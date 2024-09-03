@@ -1,8 +1,10 @@
 package com.Taches.Service;
 
 import com.Taches.Dto.TachesDto;
+import com.Taches.Feign.ProjetInterface;
 import com.Taches.Model.Taches;
 import com.Taches.Repository.TacheRepository;
+import com.Taches.Response.ProjetResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,14 +20,18 @@ public class TachesService implements ITachesService {
     private TacheRepository tacheRepository;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private ProjetInterface projetInterface;
 
     @Override
     public TachesDto createTache(TachesDto tachesDto, Long idProjet) {
         try {
-            restTemplate.getForObject("http://localhost:8081/api/Projets/" + idProjet, Object.class);
+            ProjetResponse projetResponse = projetInterface.getProjectById(idProjet);
+            // Assure-toi que projetResponse n'est pas nul ici
+            if (projetResponse == null) {
+                throw new IllegalArgumentException("Projet non trouvé : ID " + idProjet);
+            }
         } catch (Exception e) {
-            throw new IllegalArgumentException("Projet non trouvé : " + e);
+            throw new IllegalArgumentException("Erreur lors de la récupération du projet : " + e.getMessage());
         }
 
         Taches tache = new Taches();
@@ -68,21 +74,21 @@ public class TachesService implements ITachesService {
         return null;
     }
 
-    @Override
-    public void deleteTache(Long id) {
-        // URL du service Ressource
-        String url = "http://localhost:8083/api/Ressource/tache/" + id;
-
-        try {
-            // D'abord, supprimer les ressource liées à ce tache
-            restTemplate.delete(url);
-        } catch (Exception e) {
-            throw new IllegalStateException("Erreur lors de la suppression des ressource pour l'ID du  tache " + id, e);
-        }
-
-        // Ensuite, supprimer le atche
-        tacheRepository.deleteById(id);
-    }
+//    @Override
+//    public void deleteTache(Long id) {
+//        // URL du service Ressource
+//        String url = "http://localhost:8083/api/Ressource/tache/" + id;
+//
+//        try {
+//            // D'abord, supprimer les ressource liées à ce tache
+//            restTemplate.delete(url);
+//        } catch (Exception e) {
+//            throw new IllegalStateException("Erreur lors de la suppression des ressource pour l'ID du  tache " + id, e);
+//        }
+//
+//        // Ensuite, supprimer le atche
+//        tacheRepository.deleteById(id);
+//    }
 
     @Override
     public List<TachesDto> getAllTaches() {

@@ -47,11 +47,11 @@ public class TacheController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTache(@PathVariable Long id) {
-        tachesService.deleteTache(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteTache(@PathVariable Long id) {
+//        tachesService.deleteTache(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
     @DeleteMapping("/projet/{idProjet}")
     public void deleteTachesByProjetId(@PathVariable Long idProjet) {

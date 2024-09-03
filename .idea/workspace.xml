@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21702d88-7363-4f5d-a85c-055dbbe04688" name="Changes" comment="create interface de projetJpa">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ConstructionXpert(Partie 2)/Taches_service/src/main/java/com/Taches/Feign/ProjetInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConstructionXpert(Partie 2)/Taches_service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ConstructionXpert(Partie 2)/Taches_service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Taches_service/src/main/java/com/Taches/Config/AppConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +62,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/user/Desktop/File-Rouge",
+    "last_opened_file_path": "C:/Users/user/Desktop/ConstructionXS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,6 +72,9 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -154,6 +157,7 @@
       <workItem from="1724945885563" duration="34000" />
       <workItem from="1724946184416" duration="50000" />
       <workItem from="1725005436184" duration="10694000" />
+      <workItem from="1725306033506" duration="8557000" />
     </task>
     <task id="LOCAL-00001" summary="create class de Projet">
       <option name="closed" value="true" />
