@@ -19,6 +19,10 @@ public class JwtService {
 
     private static  final String SECRET_KEY = "E0ll5azxDvxi9pq8hl95AK864DIV2V143m7aVgIzcHbROKTsZMq2U0SZdgnnkFUU\n";
 
+    public void validateToken(final String token) {
+        Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);
+    }
+
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
     }
