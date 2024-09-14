@@ -101,7 +101,7 @@ public class ProjetsService implements IProjetsService {
     }
 
     // Supprimer un projet existant
-    public void deleteProject(Long id) {
+    public void deleteProjectTache(Long id) {
 
         try {
             // D'abord, supprimer les tâches liées à ce projet
@@ -131,4 +131,10 @@ public class ProjetsService implements IProjetsService {
         }
         return null;
     }
+
+
+   public void deleteProjet(Long id){
+        projetsRepository.deleteById(id);
+   }
+
 }

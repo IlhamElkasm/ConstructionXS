@@ -26,6 +26,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 //    private RestTemplate restTemplate;
 
     public AuthenticationFilter() {
+
         super(Config.class);
     }
 

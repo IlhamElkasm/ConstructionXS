@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
-@CrossOrigin(origins = "http://localhost:4200/")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
@@ -27,6 +26,13 @@ public class AuthenticationController {
             @RequestBody RegisterRequest request
     ){
         return ResponseEntity.ok(authService.register(request));
+    }
+
+    @PostMapping("/registerA")
+    public ResponseEntity<AuthenticationResponse> registerA(
+            @RequestBody RegisterRequest request
+    ){
+        return ResponseEntity.ok(authService.registerA(request));
     }
 
     @PostMapping("/authenticate")

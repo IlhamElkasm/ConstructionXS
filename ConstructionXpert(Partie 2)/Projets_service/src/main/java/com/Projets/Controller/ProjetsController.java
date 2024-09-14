@@ -51,9 +51,18 @@ public class ProjetsController {
     }
 
     // Supprimer un projet existant
+    // Supprimer les tâches d'un projet
+    @DeleteMapping("/{id}/taches")
+    public ResponseEntity<Void> deleteProjectTache(@PathVariable Long id) {
+        projetsService.deleteProjectTache(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+    // Supprimer un projet existant
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
-        projetsService.deleteProject(id);
+        projetsService.deleteProjet(id);
         return ResponseEntity.noContent().build();
     }
 }

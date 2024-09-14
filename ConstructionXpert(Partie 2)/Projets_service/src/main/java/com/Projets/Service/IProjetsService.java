@@ -9,7 +9,9 @@ public interface IProjetsService {
 
     ProjetsDTO createProject(ProjetsDTO projetsDTO);
     ProjetsDTO getProjetById(Long id);
-    void deleteProject(Long id);
+    void deleteProjectTache(Long id);
+
+    void deleteProjet(Long id);
 
     // Afficher la liste des projets existants
     List<ProjetsDTO> getAllProjects();

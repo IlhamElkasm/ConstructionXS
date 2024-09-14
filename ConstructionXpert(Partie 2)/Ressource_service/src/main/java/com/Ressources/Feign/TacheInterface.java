@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(name = "projet-service", url = "http://localhost:8082/api/Taches")
+@FeignClient(name = "taches-service", url = "http://localhost:8082/api/Taches")
 public interface TacheInterface {
 
     @GetMapping("/{id}")
