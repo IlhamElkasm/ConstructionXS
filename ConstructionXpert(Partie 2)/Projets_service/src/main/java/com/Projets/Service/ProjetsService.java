@@ -4,8 +4,10 @@ import com.Projets.Dto.ProjetsDTO;
 import com.Projets.Feign.TachesInterface;
 import com.Projets.Model.Projets;
 import com.Projets.Repository.ProjectRepository;
-import com.Projets.Response.TacheResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -74,6 +76,55 @@ public class ProjetsService implements IProjetsService {
         }).collect(Collectors.toList());
     }
 
+    //sortasc
+    public List<ProjetsDTO> findProjetsWithSorting(String field){
+        List<Projets> projets =  projetsRepository.findAll(Sort.by(Sort.Direction.ASC,field));
+        return projets.stream().map(projet -> {
+            ProjetsDTO dto = new ProjetsDTO();
+            dto.setId(projet.getId());
+            dto.setNom(projet.getNom());
+            dto.setDescription(projet.getDescription());
+            dto.setDate_debut(projet.getDate_debut());
+            dto.setDate_fin(projet.getDate_fin());
+            dto.setBudget(projet.getBudget());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+//Pagination
+    public Page<ProjetsDTO> findProjetsWithPagination(int offset, int pageSize){
+        // Fetch the paginated data from the repository
+        Page<Projets> projetsPage = projetsRepository.findAll(PageRequest.of(offset, pageSize));
+
+        // Map each Projets entity to a ProjetsDTO while preserving the pagination information
+        return projetsPage.map(projet -> {
+            ProjetsDTO dto = new ProjetsDTO();
+            dto.setId(projet.getId());
+            dto.setNom(projet.getNom());
+            dto.setDescription(projet.getDescription());
+            dto.setDate_debut(projet.getDate_debut());
+            dto.setDate_fin(projet.getDate_fin());
+            dto.setBudget(projet.getBudget());
+            return dto;
+        });
+    }
+
+//PaginationAndSorting
+    public Page<ProjetsDTO> findprojetsWithPaginationAndSorting(int offset,int pageSize,String field){
+        Page<Projets> projetsPage = projetsRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
+
+        // Map each Projets entity to a ProjetsDTO while preserving the pagination information
+        return projetsPage.map(projet -> {
+            ProjetsDTO dto = new ProjetsDTO();
+            dto.setId(projet.getId());
+            dto.setNom(projet.getNom());
+            dto.setDescription(projet.getDescription());
+            dto.setDate_debut(projet.getDate_debut());
+            dto.setDate_fin(projet.getDate_fin());
+            dto.setBudget(projet.getBudget());
+            return dto;
+        });
+    }
     // Mettre à jour un projet existant
     @Override
     public ProjetsDTO updateProject(Long id, ProjetsDTO projetsDTO) {

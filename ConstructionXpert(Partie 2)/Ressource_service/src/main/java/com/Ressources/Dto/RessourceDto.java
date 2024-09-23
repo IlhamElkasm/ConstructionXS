@@ -12,6 +12,6 @@ public class RessourceDto {
     private Long id;
     private String nom;
     private String typee;
-    private float quantité;
+    private float quantite;
     private Long idTache;
 }

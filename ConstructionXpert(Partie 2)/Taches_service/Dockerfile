@@ -1,5 +1,4 @@
 FROM openjdk:21
 EXPOSE 8080
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ADD target/Taches_service-0.0.1-SNAPSHOT.jar Taches.jar
+ENTRYPOINT ["java", "-jar", "/Taches.jar"]

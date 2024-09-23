@@ -42,7 +42,7 @@ public class RessourceService implements  IRessourceService{
         Ressource ressource = new Ressource();
         ressource.setNom(ressourceDto.getNom());
         ressource.setTypee(ressourceDto.getTypee());
-        ressource.setQuantite(ressourceDto.getQuantité());
+        ressource.setQuantite(ressourceDto.getQuantite());
         ressource.setIdTache(idTache);
 
         Ressource savedRessource = ressourceRepository.save(ressource);
@@ -51,7 +51,7 @@ public class RessourceService implements  IRessourceService{
         resultDto.setId(savedRessource.getId());
         resultDto.setNom(savedRessource.getNom());
         resultDto.setTypee(savedRessource.getTypee());
-        resultDto.setQuantité(savedRessource.getQuantite());
+        resultDto.setQuantite(savedRessource.getQuantite());
         resultDto.setIdTache(savedRessource.getIdTache());
 
         return resultDto;
@@ -66,7 +66,7 @@ public class RessourceService implements  IRessourceService{
             ressourceDto.setId(ressource.getId());
             ressourceDto.setNom(ressource.getNom());
             ressourceDto.setTypee(ressource.getTypee());
-            ressourceDto.setQuantité(ressource.getQuantite());
+            ressourceDto.setQuantite(ressource.getQuantite());
             ressourceDto.setIdTache(ressource.getIdTache());
             return ressourceDto;
         }
@@ -86,7 +86,7 @@ public class RessourceService implements  IRessourceService{
             dto.setId(ressource.getId());
             dto.setNom(ressource.getNom());
             dto.setTypee(ressource.getTypee());
-            dto.setQuantité(ressource.getQuantite());
+            dto.setQuantite(ressource.getQuantite());
             dto.setIdTache(ressource.getIdTache());
             return dto;
         }).collect(Collectors.toList());
@@ -99,7 +99,7 @@ public class RessourceService implements  IRessourceService{
             Ressource existingRessource = optionalRessource.get();
             existingRessource.setNom(ressourceDto.getNom());
             existingRessource.setTypee(ressourceDto.getTypee());
-            existingRessource.setQuantite(ressourceDto.getQuantité());
+            existingRessource.setQuantite(ressourceDto.getQuantite());
             existingRessource.setIdTache(ressourceDto.getIdTache());
 
             Ressource updatedRessource = ressourceRepository.save(existingRessource);
@@ -108,7 +108,7 @@ public class RessourceService implements  IRessourceService{
             resultDto.setId(updatedRessource.getId());
             resultDto.setNom(updatedRessource.getNom());
             resultDto.setTypee(updatedRessource.getTypee());
-            resultDto.setQuantité(updatedRessource.getQuantite());
+            resultDto.setQuantite(updatedRessource.getQuantite());
             resultDto.setIdTache(updatedRessource.getIdTache());
 
             return resultDto;

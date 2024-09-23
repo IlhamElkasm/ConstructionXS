@@ -1,9 +1,12 @@
 package com.Projets.Controller;
 
+import com.Projets.Dto.APIResponse;
 import com.Projets.Dto.ProjetsDTO;
+import com.Projets.Model.Projets;
 import com.Projets.Service.IProjetsService;
 import com.Projets.Service.ProjetsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +27,34 @@ public class ProjetsController {
     }
 
     // Afficher la liste des projets existants
+//    @GetMapping
+//    public ResponseEntity<List<ProjetsDTO>> getAllProjects() {
+//        List<ProjetsDTO> projets = projetsService.getAllProjects();
+//        return ResponseEntity.ok(projets);
+//    }
+
     @GetMapping
-    public ResponseEntity<List<ProjetsDTO>> getAllProjects() {
-        List<ProjetsDTO> projets = projetsService.getAllProjects();
-        return ResponseEntity.ok(projets);
+    private APIResponse<List<ProjetsDTO>> getProducts() {
+        List<ProjetsDTO> allProjets = projetsService.getAllProjects();
+        return new APIResponse<>(allProjets.size(), allProjets);
+    }
+
+    @GetMapping("/sort/{field}")
+    private APIResponse<List<ProjetsDTO>> getprojetsWithSort(@PathVariable String field) {
+        List<ProjetsDTO> allProjets = projetsService.findProjetsWithSorting(field);
+        return new APIResponse<>(allProjets.size(), allProjets);
+    }
+
+    @GetMapping("/pagination/{offset}/{pageSize}")
+    private APIResponse<Page<ProjetsDTO>> getprojetsWithPagination(@PathVariable int offset, @PathVariable int pageSize) {
+        Page<ProjetsDTO> projetsWithPagination = projetsService.findProjetsWithPagination(offset, pageSize);
+        return new APIResponse<>(projetsWithPagination.getSize(), projetsWithPagination);
+    }
+
+    @GetMapping("/paginationAndSort/{offset}/{pageSize}/{field}")
+    private APIResponse<Page<ProjetsDTO>> getprojetsWithPaginationAndSort(@PathVariable int offset, @PathVariable int pageSize,@PathVariable String field) {
+        Page<ProjetsDTO> productsWithPagination = projetsService.findprojetsWithPaginationAndSorting(offset, pageSize, field);
+        return new APIResponse<>(productsWithPagination.getSize(), productsWithPagination);
     }
 
     // Récupérer un projet par ID

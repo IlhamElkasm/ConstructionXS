@@ -2,6 +2,7 @@ package com.Projets.Service;
 
 import com.Projets.Dto.ProjetsDTO;
 import com.Projets.Model.Projets;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -17,4 +18,10 @@ public interface IProjetsService {
     List<ProjetsDTO> getAllProjects();
 
     ProjetsDTO updateProject(Long id, ProjetsDTO projetsDTO);
+
+    List<ProjetsDTO> findProjetsWithSorting(String field);
+
+    Page<ProjetsDTO> findProjetsWithPagination(int offset, int pageSize);
+
+    Page<ProjetsDTO> findprojetsWithPaginationAndSorting(int offset,int pageSize,String field);
 }
