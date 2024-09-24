@@ -8,6 +8,7 @@ import com.Taches.Repository.TacheRepository;
 import com.Taches.Response.ProjetResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -180,7 +181,18 @@ public class TachesService implements ITachesService {
 
     @Override
     public Page<TachesDto> findTachesWithPagination(int offset, int pageSize) {
-        return null;
+        Page<Taches> taches = tacheRepository.findAll(PageRequest.of(offset, pageSize));
+        return taches.map(tache -> {
+            TachesDto dto = new TachesDto();
+            dto.setId(tache.getId());
+            dto.setNom(tache.getNom());
+            dto.setDate_debut(tache.getDate_debut());
+            dto.setDate_fin(tache.getDate_fin());
+            dto.setDescription(tache.getDescription());
+            dto.setStatu(tache.getStatu());
+            dto.setIdProjet(tache.getIdProjet());
+            return dto;
+        });
     }
 
 

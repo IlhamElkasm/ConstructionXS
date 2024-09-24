@@ -5,6 +5,7 @@ import com.Taches.Dto.TachesDto;
 import com.Taches.Model.Taches;
 import com.Taches.Service.ITachesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -69,5 +70,11 @@ public class TacheController {
     private APIResponse<List<TachesDto>> getTachesByDesc(@PathVariable String feild) {
         List<TachesDto> allTaches = tachesService.findTachesWithSortingDesc(feild);
         return new APIResponse<>(allTaches.size(), allTaches);
+    }
+
+    @GetMapping("/pagination/{offset}/{pageSize}")
+    private APIResponse<Page<TachesDto>> getTachesWithPagination(@PathVariable int offset, @PathVariable int pageSize) {
+        Page<TachesDto> tachePagination = tachesService.findTachesWithPagination(offset, pageSize);
+        return new APIResponse<>(tachePagination.getSize(), tachePagination);
     }
 }

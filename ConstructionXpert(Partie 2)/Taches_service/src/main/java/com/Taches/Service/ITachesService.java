@@ -21,7 +21,7 @@ public interface ITachesService {
         void deleteTachesByProjetId(Long idProjet);
 
         List<TachesDto> findTachesWithSortingAsc(String field);
-        public List<TachesDto> findTachesWithSortingDesc(String field);
+        List<TachesDto> findTachesWithSortingDesc(String field);
 
         Page<TachesDto> findTachesWithPagination(int offset, int pageSize);
 }
