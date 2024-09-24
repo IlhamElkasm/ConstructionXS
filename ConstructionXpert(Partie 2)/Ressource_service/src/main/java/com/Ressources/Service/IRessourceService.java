@@ -2,6 +2,7 @@ package com.Ressources.Service;
 
 import com.Ressources.Dto.RessourceDto;
 import com.Ressources.Model.Ressource;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -17,4 +18,9 @@ public interface IRessourceService {
     RessourceDto updateRessource(Long id, RessourceDto ressourceDto);
 
     void deleteRessourceByTacheId(Long idTache);
+
+    List<RessourceDto> findRessourcesWithSortingAsc(String field);
+    List<RessourceDto> findRessourceWithSortingDesc(String field);
+
+    Page<RessourceDto> findRessourceWithPagination(int offset, int pageSize);
 }

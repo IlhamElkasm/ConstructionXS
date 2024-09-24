@@ -6,6 +6,8 @@ import com.Ressources.Model.Ressource;
 import com.Ressources.Repository.RessourceRepository;
 import com.Ressources.Response.TacheResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -122,5 +124,39 @@ public class RessourceService implements  IRessourceService{
         if (ressources != null && !ressources.isEmpty()) {
             ressourceRepository.deleteAll(ressources);
         }
+    }
+
+    @Override
+    public List<RessourceDto> findRessourcesWithSortingAsc(String field) {
+        List<Ressource> ressources = ressourceRepository.findAll(Sort.by(Sort.Direction.ASC, field));
+
+        return ressources.stream().map(ressource -> {
+            RessourceDto dto = new RessourceDto();
+            dto.setId(ressource.getId());
+            dto.setNom(ressource.getNom());
+            dto.setTypee(ressource.getTypee());
+            dto.setQuantite(ressource.getQuantite());
+            dto.setIdTache(ressource.getIdTache());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<RessourceDto> findRessourceWithSortingDesc(String field) {
+        List<Ressource> ressources = ressourceRepository.findAll(Sort.by(Sort.Direction.DESC, field));
+        return ressources.stream().map(ressource -> {
+            RessourceDto dto = new RessourceDto();
+            dto.setId(ressource.getId());
+            dto.setNom(ressource.getNom());
+            dto.setTypee(ressource.getTypee());
+            dto.setQuantite(ressource.getQuantite());
+            dto.setIdTache(ressource.getIdTache());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<RessourceDto> findRessourceWithPagination(int offset, int pageSize) {
+        return null;
     }
 }

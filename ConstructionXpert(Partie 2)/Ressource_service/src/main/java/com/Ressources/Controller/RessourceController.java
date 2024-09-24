@@ -1,6 +1,7 @@
 package com.Ressources.Controller;
 
 
+import com.Ressources.Dto.APIResponse;
 import com.Ressources.Dto.RessourceDto;
 import com.Ressources.Model.Ressource;
 import com.Ressources.Service.IRessourceService;
@@ -63,5 +64,17 @@ public class RessourceController {
     public ResponseEntity<Void> deleteRessourcesByTacheId(@PathVariable Long idTache) {
         ressourceService.deleteRessourceByTacheId(idTache);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/Asc/{feild}")
+    private APIResponse<List<RessourceDto>> getRessourcesAsc(@PathVariable String feild) {
+        List<RessourceDto> allRessources = ressourceService.findRessourcesWithSortingAsc(feild);
+        return new APIResponse<>(allRessources.size(), allRessources);
+    }
+
+    @GetMapping("/Desc/{feild}")
+    private APIResponse<List<RessourceDto>> getRessourcesDesc(@PathVariable String feild) {
+        List<RessourceDto> allRessources = ressourceService.findRessourceWithSortingDesc(feild);
+        return new APIResponse<>(allRessources.size(), allRessources);
     }
 }
