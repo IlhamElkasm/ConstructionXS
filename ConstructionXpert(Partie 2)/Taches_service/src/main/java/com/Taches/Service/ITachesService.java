@@ -2,6 +2,7 @@ package com.Taches.Service;
 
 import com.Taches.Dto.TachesDto;
 import com.Taches.Model.Taches;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -18,4 +19,9 @@ public interface ITachesService {
         TachesDto updateTache(Long id, TachesDto tachesDto);
 
         void deleteTachesByProjetId(Long idProjet);
+
+        List<TachesDto> findTachesWithSortingAsc(String field);
+        public List<TachesDto> findTachesWithSortingDesc(String field);
+
+        Page<TachesDto> findTachesWithPagination(int offset, int pageSize);
 }

@@ -1,5 +1,6 @@
 package com.Taches.Controller;
 
+import com.Taches.Dto.APIResponse;
 import com.Taches.Dto.TachesDto;
 import com.Taches.Model.Taches;
 import com.Taches.Service.ITachesService;
@@ -56,5 +57,17 @@ public class TacheController {
     @DeleteMapping("/projet/{idProjet}")
     public void deleteTachesByProjetId(@PathVariable Long idProjet) {
         tachesService.deleteTachesByProjetId(idProjet);
+    }
+
+    @GetMapping("/Asc/{feild}")
+    private APIResponse<List<TachesDto>> getTachesByAsc(@PathVariable String feild) {
+        List<TachesDto> allTaches = tachesService.findTachesWithSortingAsc(feild);
+        return new APIResponse<>(allTaches.size(), allTaches);
+    }
+
+    @GetMapping("/Desc/{feild}")
+    private APIResponse<List<TachesDto>> getTachesByDesc(@PathVariable String feild) {
+        List<TachesDto> allTaches = tachesService.findTachesWithSortingDesc(feild);
+        return new APIResponse<>(allTaches.size(), allTaches);
     }
 }

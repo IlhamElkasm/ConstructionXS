@@ -7,6 +7,8 @@ import com.Taches.Model.Taches;
 import com.Taches.Repository.TacheRepository;
 import com.Taches.Response.ProjetResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -142,6 +144,43 @@ public class TachesService implements ITachesService {
         if (taches != null && !taches.isEmpty()) {
             tacheRepository.deleteAll(taches);
         }
+    }
+
+    @Override
+    public List<TachesDto> findTachesWithSortingAsc(String field) {
+        List<Taches> taches = tacheRepository.findAll(Sort.by(Sort.Direction.ASC, field));
+        return taches.stream().map(tache -> {
+            TachesDto dto = new TachesDto();
+            dto.setId(tache.getId());
+            dto.setNom(tache.getNom());
+            dto.setDate_debut(tache.getDate_debut());
+            dto.setDate_fin(tache.getDate_fin());
+            dto.setDescription(tache.getDescription());
+            dto.setStatu(tache.getStatu());
+            dto.setIdProjet(tache.getIdProjet());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TachesDto> findTachesWithSortingDesc(String field) {
+        List<Taches> taches = tacheRepository.findAll(Sort.by(Sort.Direction.DESC, field));
+        return taches.stream().map(tache -> {
+            TachesDto dto = new TachesDto();
+            dto.setId(tache.getId());
+            dto.setNom(tache.getNom());
+            dto.setDate_debut(tache.getDate_debut());
+            dto.setDate_fin(tache.getDate_fin());
+            dto.setDescription(tache.getDescription());
+            dto.setStatu(tache.getStatu());
+            dto.setIdProjet(tache.getIdProjet());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<TachesDto> findTachesWithPagination(int offset, int pageSize) {
+        return null;
     }
 
 
