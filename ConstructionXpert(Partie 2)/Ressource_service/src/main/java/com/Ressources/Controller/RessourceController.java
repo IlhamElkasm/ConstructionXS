@@ -6,6 +6,7 @@ import com.Ressources.Dto.RessourceDto;
 import com.Ressources.Model.Ressource;
 import com.Ressources.Service.IRessourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -76,5 +77,11 @@ public class RessourceController {
     private APIResponse<List<RessourceDto>> getRessourcesDesc(@PathVariable String feild) {
         List<RessourceDto> allRessources = ressourceService.findRessourceWithSortingDesc(feild);
         return new APIResponse<>(allRessources.size(), allRessources);
+    }
+
+    @GetMapping("/pagination/{offset}/{pageSize}")
+    private APIResponse<Page<RessourceDto>> getressourcePagination(@PathVariable int offset, @PathVariable int pageSize) {
+        Page<RessourceDto> ressourcePagination = ressourceService.findRessourceWithPagination(offset, pageSize);
+        return new APIResponse<>(ressourcePagination.getSize(), ressourcePagination);
     }
 }

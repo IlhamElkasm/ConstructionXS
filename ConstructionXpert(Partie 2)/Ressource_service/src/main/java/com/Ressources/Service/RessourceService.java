@@ -7,6 +7,7 @@ import com.Ressources.Repository.RessourceRepository;
 import com.Ressources.Response.TacheResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -157,6 +158,15 @@ public class RessourceService implements  IRessourceService{
 
     @Override
     public Page<RessourceDto> findRessourceWithPagination(int offset, int pageSize) {
-        return null;
+        Page<Ressource> ressources = ressourceRepository.findAll(PageRequest.of(offset, pageSize));
+        return ressources.map(ressource -> {
+            RessourceDto dto = new RessourceDto();
+            dto.setId(ressource.getId());
+            dto.setNom(ressource.getNom());
+            dto.setTypee(ressource.getTypee());
+            dto.setQuantite(ressource.getQuantite());
+            dto.setIdTache(ressource.getIdTache());
+            return dto;
+        });
     }
 }
