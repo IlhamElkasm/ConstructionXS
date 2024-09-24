@@ -77,8 +77,22 @@ public class ProjetsService implements IProjetsService {
     }
 
     //sortasc
-    public List<ProjetsDTO> findProjetsWithSorting(String field){
+    public List<ProjetsDTO> findProjetsWithSortingAsc(String field){
         List<Projets> projets =  projetsRepository.findAll(Sort.by(Sort.Direction.ASC,field));
+        return projets.stream().map(projet -> {
+            ProjetsDTO dto = new ProjetsDTO();
+            dto.setId(projet.getId());
+            dto.setNom(projet.getNom());
+            dto.setDescription(projet.getDescription());
+            dto.setDate_debut(projet.getDate_debut());
+            dto.setDate_fin(projet.getDate_fin());
+            dto.setBudget(projet.getBudget());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    public List<ProjetsDTO> findProjetsWithSortingDesc(String field){
+        List<Projets> projets =  projetsRepository.findAll(Sort.by(Sort.Direction.DESC,field));
         return projets.stream().map(projet -> {
             ProjetsDTO dto = new ProjetsDTO();
             dto.setId(projet.getId());

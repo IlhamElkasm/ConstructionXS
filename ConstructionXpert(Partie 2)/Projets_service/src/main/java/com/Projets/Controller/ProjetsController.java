@@ -39,9 +39,15 @@ public class ProjetsController {
         return new APIResponse<>(allProjets.size(), allProjets);
     }
 
-    @GetMapping("/sort/{field}")
-    private APIResponse<List<ProjetsDTO>> getprojetsWithSort(@PathVariable String field) {
-        List<ProjetsDTO> allProjets = projetsService.findProjetsWithSorting(field);
+    @GetMapping("/Asc/{field}")
+    private APIResponse<List<ProjetsDTO>> getprojetsWithSortAsc(@PathVariable String field) {
+        List<ProjetsDTO> allProjets = projetsService.findProjetsWithSortingAsc(field);
+        return new APIResponse<>(allProjets.size(), allProjets);
+    }
+
+    @GetMapping("/Desc/{field}")
+    private APIResponse<List<ProjetsDTO>> getprojetsWithSortDesc(@PathVariable String field) {
+        List<ProjetsDTO> allProjets = projetsService.findProjetsWithSortingDesc(field);
         return new APIResponse<>(allProjets.size(), allProjets);
     }
 

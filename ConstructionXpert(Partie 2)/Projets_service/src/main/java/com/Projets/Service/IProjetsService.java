@@ -19,7 +19,8 @@ public interface IProjetsService {
 
     ProjetsDTO updateProject(Long id, ProjetsDTO projetsDTO);
 
-    List<ProjetsDTO> findProjetsWithSorting(String field);
+    List<ProjetsDTO> findProjetsWithSortingAsc(String field);
+    public List<ProjetsDTO> findProjetsWithSortingDesc(String field);
 
     Page<ProjetsDTO> findProjetsWithPagination(int offset, int pageSize);
 
